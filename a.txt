@@ -1,0 +1,28 @@
+@echo off
+echo ================================================
+echo     Cygnus AirTouch Browser - EXE Builder
+echo ================================================
+echo.
+
+echo [1] Checking Python...
+python --version
+if %errorlevel% neq 0 (
+    echo ERROR: Python not found! Please install Python 3.8 first.
+    pause
+    exit
+)
+
+echo [2] Upgrading pip...
+python -m pip install --upgrade pip
+
+echo [3] Installing required packages...
+pip install PyQt5 PyQt5-Qt5 PyQt5-sip PyQtWebEngine mediapipe opencv-python pyautogui numpy SpeechRecognition pyttsx3 pyaudio pyinstaller
+
+echo [4] Creating .exe file...
+pyinstaller --onefile --windowed --name "CygnusAirTouchBrowser" cygnus_browser.py
+
+echo.
+echo ================================================
+echo SUCCESS! Check the "dist" folder for CygnusAirTouchBrowser.exe
+echo ================================================
+pause
